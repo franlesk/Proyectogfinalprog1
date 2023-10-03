@@ -51,7 +51,7 @@ CREATE TABLE `compra-productos` (
 CREATE TABLE `compras` (
   `id_compra` int NOT NULL,
   `usuario_id` int NOT NULL,
-  `fecha-hora` datetime NOT NULL,
+  `fecha_hora` datetime NOT NULL,
   `finalizar` tinyint  NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
