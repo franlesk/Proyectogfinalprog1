@@ -1,6 +1,5 @@
 <?php
-
-
+//esto hay que modificarlo porque al final use PDO en lugar de mysqli
 $sql = "SELECT * FROM producto";
 $resultado = mysqli_query($conexion, $sql);
 
@@ -11,7 +10,7 @@ if ($resultado) {
         echo "Nombre: " . $fila['producto_nombre'] . "<br>";
         // Otras operaciones con los datos
     }
-    mysqli_free_result($resultado); // Liberar la memoria del resultado
+    mysqli_free_result($resultado); 
 } else {
     echo "Error en la consulta: " . mysqli_error($conexion);
 }
