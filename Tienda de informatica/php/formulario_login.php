@@ -9,11 +9,11 @@
 <body>
     <form action="procesar_login.php" method="POST">
         <h1>Iniciar Sesión</h1>
-        <label for="usuario">Usuario:</label>
-        <input type="text" id="usuario" name="usuario_usuario" required><br><br>
+        <label for="usuario">Usuario:</label> 
+        <input type="text" id="usuario" name="usuario_usuario" placeholder="Nombre de usuario" required><br><br>
 
         <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="usuario_clave" required><br><br>
+        <input type="password" id="contrasena" name="usuario_clave" placeholder="Contraseña" required><br><br>
         <button type="submit">Iniciar Sesión</button>
         <a href="registro.php">Registrate aqui</a>
     </form>
