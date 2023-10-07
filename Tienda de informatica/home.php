@@ -15,7 +15,7 @@
                 <li><a href="productos.php">Productos</a></li>
                 <li><a href="categorias.php">Categorías</a></li>
                 <li><a href="carrito.php">Carrito de Compras</a></li>
-                <li><a <button onclick="confirmarCierreSesion()"> >Cerrar Sesión</button></a></li>
+                <li><a <button onclick="confirmarCierreSesion()"> Cerrar Sesión</button></a></li>
             </ul>
             <script>
                 function confirmarCierreSesion(){

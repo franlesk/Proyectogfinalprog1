@@ -43,33 +43,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Informática - Registro</title>
-    <link rel="stylesheet"  href="../estilos/estilos.css">
+    <link rel="stylesheet"  href="../estilos/registro.css">
 </head>
 <body>
 
-
     <main>
-        <section>
-            <h2>Registro de Nuevos Usuarios</h2>
+        <section class="formulario">
+            <h2>Registro de Nuevos Usuarios:</h2>
             <form method="post" action="registro.php">
                 
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="usuario_nombre" required>
+                <input type="text" id="nombre" name="usuario_nombre" placeholder="Ingrese su nombre" required>
 
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="usuario_apellido" required>
+                <input type="text" id="apellido" name="usuario_apellido" placeholder="Ingrese su apellido" required>
 
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario_usuario" required>
+                <input type="text" id="usuario" name="usuario_usuario" placeholder="Ingrese un usuario" required>
 
                 <label for="email">Correo Electrónico:</label>
-                <input type="email" id="email" name="usuario_email" required>
+                <input type="email" id="email" name="usuario_email" placeholder="Ingrese su email" required>
 
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="usuario_clave_1" required>
+                <input type="password" id="password" name="usuario_clave_1" placeholder="Ingrese una contraseña" required>
 
                 <label for="confirm_password">Repita su contraseña:</label>
-                <input type="password" id="confirm_password" name="usuario_clave_2" required>
+                <input type="password" id="confirm_password" name="usuario_clave_2" placeholder="Repita su contraseña" required>
 
                 <button type="submit">Registrarse</button>
 
