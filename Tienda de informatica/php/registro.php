@@ -1,6 +1,6 @@
 <?php
+require_once 'conexion.php';
 require_once 'usuario.php';
-require_once 'conexion.php'; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['usuario_nombre'];
@@ -12,30 +12,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Verificar si las contraseñas coinciden
     if ($clave1 !== $clave2) {
-        echo "Las contraseñas no coinciden";
+        $mensaje_error = "Las contraseñas no coinciden";
     } else {
-        // crear un nuevo objeto Usuario
+        // Creamos un nuevo objeto Usuario
         $nuevoUsuario = new Usuario($nombre, $apellido, $usuario, $email, $clave1);
 
         // Guardar usuario en la base de datos utilizando PDO
         try {
             $conexion = conexion(); // Obtenemos la conexión desde el archivo conexion.php
+            $hash_clave = password_hash($clave1, PASSWORD_DEFAULT); // Ciframos la contraseña
+
+            // Consulta SQL para insertar el usuario
             $sql = "INSERT INTO usuario (usuario_nombre, usuario_apellido, usuario_usuario, usuario_clave, usuario_email) VALUES (?, ?, ?, ?, ?)";
             $stmt = $conexion->prepare($sql);
-            $stmt->execute([$nombre, $apellido, $usuario, $clave1, $email]);
 
-            // verificamos si es exitosa la conexion
-            if ($stmt->rowCount() > 0) {
-                $mensaje_exito = "¡Usuario registrado con éxito!";
+            if ($stmt) {
+                $stmt->execute([$nombre, $apellido, $usuario, $hash_clave, $email]);
+
+                // Verificamos si la inserción fue exitosa
+                if ($stmt->rowCount() > 0) {
+                    $mensaje_exito = "¡Usuario registrado con éxito!";
+                } else {
+                    $mensaje_error = "Hubo un error al registrar el usuario.";
+                }
             } else {
-                $mensaje_error = "Hubo un error al registrar el usuario.";
+                $mensaje_error = "Error en la preparación de la consulta SQL.";
             }
         } catch (PDOException $e) {
-            echo "Error al registrar el usuario: " . $e->getMessage();
+            $mensaje_error = "Error al registrar el usuario: " . $e->getMessage();
         }
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

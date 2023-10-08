@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,11 +13,12 @@
         <h1>Tienda de Informática</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="../index.php">Home</a></li>
                 <li><a href="productos.php">Productos</a></li>
                 <li><a href="categorias.php">Categorías</a></li>
                 <li><a href="carrito.php">Carrito de Compras</a></li>
-                <li><a <button onclick="confirmarCierreSesion()"> Cerrar Sesión</button></a></li>
+                <li><a href="./php/perfil.php">Mi perfil</a></li>
+                <li><button onclick="confirmarCierreSesion()">Cerrar Sesión</button></li>
             </ul>
             <script>
                 function confirmarCierreSesion(){
@@ -23,7 +26,7 @@
                   console.log("Confirmar:", confirmar);
                   if(confirmar){
 
-                   window.location.href ="cerrar_sesion.php";
+                   window.location.href ="index.php";
                       }
              }
             </script>
