@@ -1,10 +1,3 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: hsl(0, 90%, 48%);
-    margin: 0;
-    padding: 0;
-}
-
 header {
     background-color: #333;
     color: #fff;
@@ -27,3 +20,6 @@ nav ul li a {
     color: #fff;
 }
 
+nav ul li.active a {
+    font-weight: bold; 
+}
