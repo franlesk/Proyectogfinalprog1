@@ -1,7 +1,7 @@
 <?php
 function conexion() {
     $host = "localhost";
-    $nombre_bd = "ventas";
+    $nombre_bd = "inventario";
     $usuario = "root";
     $usuario_clave = "";
 
