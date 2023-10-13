@@ -11,7 +11,7 @@
         <h1>Tienda de Informática</h1>
         <nav>
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="home.php">Home</a></li>
                 <li><a href="productos.php">Productos</a></li>
                 <li><a href="categorias.php">Categorías</a></li>
                 <li><a href="carrito.php">Carrito de Compras</a></li>
@@ -19,7 +19,50 @@
             </ul>
         </nav>
     </header>
-    
+    <div class="container-items">
+        <div class="item">
+            <figure>
+                <img    
+                    src="img/DISCOS/Disco Rigido W.D. 1TB Blue Sata.jpg"
+                        
+                    alt="">
+            </figure>
+            <div class="info-producto">
+                <h2>Producto</h2>
+                <p class="precio">Precio</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img    
+                    src="img/DISCOS/Disco Rigido W.D. 1TB Blue Sata.jpg"
+                        
+                    alt="">
+            </figure>
+            <div class="info-producto">
+                <h2>Producto</h2>
+                <p class="precio">Precio</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+        <div class="item">
+            <figure>
+                <img    
+                    src="img/DISCOS/Disco Rigido W.D. 1TB Blue Sata.jpg"
+                        
+                    alt="">
+            </figure>
+            <div class="info-producto">
+                <h2>Producto</h2>
+                <p class="precio">Precio</p>
+                <button>Añadir al carrito</button>
+            </div>
+        </div>
+
+
+
+    </div>
     <main>
         <section>
             <h2>Bienvenido a nuestra tienda de informática</h2>

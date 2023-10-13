@@ -1,5 +1,5 @@
 <?php
-require_once "conexion.php";
+require_once "../Controladores/conexion.php";
 require_once "usuario.php";
 require_once "repositorio.php";
 

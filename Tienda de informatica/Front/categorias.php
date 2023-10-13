@@ -11,7 +11,7 @@
   <header>
 
   <?php 
-    $pagina_actual = 'home';
+    $pagina_actual = 'Categorias';
     include 'navbar.php'; 
   ?>
   </header>
@@ -21,14 +21,14 @@
   
   </div>
   <div class="filters">
-    <a href="?category=todos">Mostrar todos</a>
-    <a href="?category=1">Discos</a>
-    <a href="?category=2">Fuentes</a>
-    <a href="?category=3">Gabinetes</a>
-    <a href="?category=4">Mothers</a>
-    <a href="?category=5">Placas de video</a>
-    <a href="?category=6">Procesadores</a>
-    <a href="?category=7">Ram</a>
+    <a href="?categoria=todos">Mostrar todos</a>
+    <a href="?categoria=1">Discos</a>
+    <a href="?categoria=2">Fuentes</a>
+    <a href="?categoria=3">Gabinetes</a>
+    <a href="?categoria=4">Mothers</a>
+    <a href="?categoria=5">Placas de video</a>
+    <a href="?categoria=6">Procesadores</a>
+    <a href="?categoria=7">Ram</a>
   </div>
   
 

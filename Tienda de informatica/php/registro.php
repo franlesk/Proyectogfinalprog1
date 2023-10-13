@@ -1,5 +1,5 @@
 <?php
-require_once 'conexion.php';
+require_once '../Controladores/conexion.php';
 require_once 'usuario.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                  ?>
             </form>
             
-            <form action="../index.php" method="GET">
+            <form action="../Front/index.php" method="GET">
             <button type="submit">Volver al inicio</button>
             </form>
         </section>

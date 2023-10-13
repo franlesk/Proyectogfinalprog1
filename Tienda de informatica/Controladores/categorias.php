@@ -1,9 +1,9 @@
 <?php
 require_once 'conexion.php';
 
-$category = isset($_GET['category']) ? $_GET['category'] : 'todos';
+$categoria = isset($_GET['categoria']) ? $_GET['categoria'] : 'todos';
 
-if ($category === 'todos') {
+if ($categoria === 'todos') {
     $query = 'SELECT * FROM producto';
 } else {
     $query = "SELECT * FROM producto WHERE categoria_id = :categoria";
@@ -12,9 +12,9 @@ $conexion = conexion();
 // Prepara la consulta
 $stmt = $conexion->prepare($query);
 
-if ($category !== 'todos') {
+if ($categoria !== 'todos') {
     // Asigna el valor al parámetro :categoria
-    $stmt->bindParam(':categoria', $category, PDO::PARAM_STR);
+    $stmt->bindParam(':categoria', $categoria, PDO::PARAM_STR);
 }
 
 // Ejecuta la consulta
