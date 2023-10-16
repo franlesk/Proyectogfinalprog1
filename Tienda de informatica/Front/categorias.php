@@ -18,6 +18,7 @@
   
   <div class="filters">
       <select name="orden" id="ordenselect" class="button-select" onchange="actualizarOrden()">
+      <option value="" disabled selected hidden>Ordenar por</option>
         <option value="asc">Menor precio</option>
         <option value="desc">Mayor precio</option>  
       </select>
