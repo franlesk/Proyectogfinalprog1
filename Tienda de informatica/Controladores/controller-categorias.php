@@ -2,12 +2,14 @@
 require_once 'conexion.php';
 
 $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : 'todos';
+$orden = isset($_GET['orden']) && ($_GET['orden'] === 'asc' || $_GET['orden'] === 'desc') ? $_GET['orden'] : '';
 
 if ($categoria === 'todos') {
-    $query = 'SELECT * FROM producto';
+    $query = "SELECT * FROM producto ORDER BY producto_precio $orden";
 } else {
-    $query = "SELECT * FROM producto WHERE categoria_id = :categoria";
+    $query = "SELECT * FROM producto WHERE categoria_id = :categoria ORDER BY producto_precio $orden";
 }
+
 $conexion = conexion();
 // Prepara la consulta
 $stmt = $conexion->prepare($query);
@@ -25,7 +27,7 @@ $num_rows = $stmt->rowCount();
 
 if ($num_rows > 0) {
     while ($fila = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        // Procesar cada fila
+        // Procesa cada fila
         echo '<div class="product">';
         echo '<img src="' . $fila['producto_foto'] . '" alt="' . $fila['producto_nombre'] . '">';
         echo '<p>' . $fila['producto_nombre'] . '</p>';
