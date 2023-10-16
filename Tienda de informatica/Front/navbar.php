@@ -24,7 +24,7 @@
                 } else {
                     // Si el usuario no ha iniciado sesión, muestra estos elementos del menú
                     echo '<li><a href="../php/registro.php">Registro</a></li>';
-                    echo '<li><a href="../php/formulario_login.php">Inicia sesión</a></li>';
+                    echo '<li><a href="formulario_login.php">Inicia sesión</a></li>';
                 }
                 ?>
             </ul>

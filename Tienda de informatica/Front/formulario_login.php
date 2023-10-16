@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="Estilos/login.css">
 </head>
 <body>
-<?php include 'navbar.php'; ?>
     <form action="" method="POST"> <!--action vacio para que se redirigia a la misma pagina y procesemos el login-->
         <h1>Iniciar Sesión</h1>
         <label for="usuario_usuario">Usuario:</label> 
