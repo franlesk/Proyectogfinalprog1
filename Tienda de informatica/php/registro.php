@@ -1,6 +1,7 @@
 <?php
 require_once '../Controladores/conexion.php';
 require_once 'usuario.php';
+require_once 'repositorio.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nombre = $_POST['usuario_nombre'];
@@ -14,36 +15,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($clave1 !== $clave2) {
         $mensaje_error = "Las contraseñas no coinciden";
     } else {
-        // Creamos un nuevo objeto Usuario
-        $nuevoUsuario = new Usuario($nombre, $apellido, $usuario, $email, $clave1);
+        $conexion = conexion(); // Obtenemos la conexión desde el archivo conexion.php
+        $repositorio = new Repositorio($conexion);
 
-        // Guardar usuario en la base de datos utilizando PDO
-        try {
-            $conexion = conexion(); // Obtenemos la conexión desde el archivo conexion.php
-            $hash_clave = password_hash($clave1, PASSWORD_DEFAULT); // Ciframos la contraseña
+        $registrado = $repositorio->registrarUsuario($nombre, $apellido, $usuario, $clave1, $email);
 
-            // Consulta SQL para insertar el usuario
-            $sql = "INSERT INTO usuario (usuario_nombre, usuario_apellido, usuario_usuario, usuario_clave, usuario_email) VALUES (?, ?, ?, ?, ?)";
-            $stmt = $conexion->prepare($sql);
-
-            if ($stmt) {
-                $stmt->execute([$nombre, $apellido, $usuario, $hash_clave, $email]);
-
-                // Verificamos si la inserción fue exitosa
-                if ($stmt->rowCount() > 0) {
-                    $mensaje_exito = "¡Usuario registrado con éxito!";
-                } else {
-                    $mensaje_error = "Hubo un error al registrar el usuario.";
-                }
-            } else {
-                $mensaje_error = "Error en la preparación de la consulta SQL.";
-            }
-        } catch (PDOException $e) {
-            $mensaje_error = "Error al registrar el usuario: " . $e->getMessage();
+        if ($registrado) {
+            $mensaje_exito = "¡Usuario registrado con éxito!";
+        } else {
+            $mensaje_error = "Hubo un error al registrar el usuario.";
         }
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
@@ -52,9 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Informática - Registro</title>
-    <link rel="stylesheet"  href="../estilos/registro.css">
+    <link rel="stylesheet"  href="../Front/estilos/registro.css">
 </head>
 <body>
+
+<?php include '../php/navbar.php'; ?>
 
     <main>
         <section class="formulario">

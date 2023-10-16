@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="Estilos/login.css">
 </head>
 <body>
+<?php include 'navbar.php'; ?>
     <form action="" method="POST"> <!--action vacio para que se redirigia a la misma pagina y procesemos el login-->
         <h1>Iniciar Sesión</h1>
         <label for="usuario_usuario">Usuario:</label> 
@@ -16,7 +17,7 @@
         <label for="usuario_clave">Contraseña:</label>
         <input type="password" name="usuario_clave" placeholder="Contraseña" required><br><br>
         <button type="submit">Iniciar Sesión</button>
-        <a href="registro.php">Registrate aqui</a>
+        <a href="../php/registro.php">Registrate aqui</a>
         <?php
                 // Incluimo el archivo que procesa el inicio de sesión
                 include '../Controladores/procesar_login.php';

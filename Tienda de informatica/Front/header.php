@@ -19,41 +19,16 @@
                 session_start(); 
                 if (isset($_SESSION['usuario_id'])) {
                     // Si el usuario está iniciado sesión, muestra estos elementos del menú
-                    echo '<li><a href="mostrar_perfil.php">Mi perfil</a></li>';
+                    echo '<li><a href="/php/perfil.php">Mi perfil</a></li>';
                     echo '<li><button onclick="confirmarCierreSesion()">Cerrar Sesión</button></li>';
                 } else {
                     // Si el usuario no ha iniciado sesión, muestra estos elementos del menú
-                    echo '<li><a href="../php/registro.php">Registro</a></li>';
-                    echo '<li><a href="../php/formulario_login.php">Inicia sesión</a></li>';
+                    echo '<li><a href="registro.php">Registro</a></li>';
+                    echo '<li><a href="formulario_login.php">Inicia sesión</a></li>';
                 }
                 ?>
             </ul>
         </nav>
     </header>
-
-<script>
-    function confirmarCierreSesion(){
-        let confirmar = confirm("¿Desea cerrar sesión?");
-        console.log("Confirmar:", confirmar);
-        if(confirmar){
-            window.location.href ="index.php";
-        }
-    }
-
-    // Obtener la URL actual
-    const currentPage = window.location.href;
-
-    // Obtener todos los enlaces de la barra de navegación
-    const navLinks = document.querySelectorAll('nav a');
-
-    // Deshabilitar el enlace correspondiente a la página actual
-    navLinks.forEach(link => {
-        if (link.href === currentPage) {
-            link.style.pointerEvents = 'none'; // Deshabilitar el enlace
-            link.style.color = 'gray';  // Cambiar color del enlace deshabilitado
-        }
-    });
-</script>
-
 </body>
 </html>

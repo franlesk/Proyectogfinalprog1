@@ -88,3 +88,46 @@ form button:hover {
     font-size: 14px;
     margin-top: 10px;
 }
+/* Estilo para el botón */
+.boton {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px; /* Agregamos margen para separar los botones */
+}
+
+/* Estilo para el botón al pasar el cursor por encima */
+.boton:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo específico para el botón "Volver atrás" */
+.boton-volver {
+    background-color:  #007bff;
+    color: #fff;
+}
+
+/* Estilo para el botón "Volver atrás" al pasar el cursor por encima */
+.boton-volver:hover {
+    background-color:#0056b3;
+}
+
+
+.mensaje-exito {
+    color: #0aa710; /* Cambiamos el color del texto a blanco */
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center; /* Centra el texto horizontalmente */
+}
+
+.mensaje-error {
+   
+    color: #b30404; /* Cambiamos el color del texto a blanco */
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center; /* Centra el texto horizontalmente */
+}

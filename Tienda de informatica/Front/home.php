@@ -9,30 +9,9 @@
     <link rel="stylesheet"  href="Estilos/navbar.css">
 </head>
 <body>
-    <header>
-        <h1>Tienda de Informática</h1>
-        <nav>
-            <ul>
-                <li><a href="../index.php">Home</a></li>
-                <li><a href="productos.php">Productos</a></li>
-                <li><a href="categorias.php">Categorías</a></li>
-                <li><a href="carrito.php">Carrito de Compras</a></li>
-                <li><a href="./php/perfil.php">Mi perfil</a></li>
-                <li><button onclick="confirmarCierreSesion()">Cerrar Sesión</button></li>
-            </ul>
-            <script>
-                function confirmarCierreSesion(){
-                  let confirmar = confirm("¿Desea cerrar sesión?");
-                  console.log("Confirmar:", confirmar);
-                  if(confirmar){
 
-                   window.location.href ="index.php";
-                      }
-             }
-            </script>
-        </nav>
-    </header>
-    
+<?php include 'navbar.php'; ?>
+
     <main>
         <section>
             <h2>Bienvenido a nuestra tienda de informática</h2>

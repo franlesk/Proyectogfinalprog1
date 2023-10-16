@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="Estilos/carrito.css">
 </head>
 <body>
-    <header>
-        <?php include 'navbar.php'; ?>
-    </header>
+
+<?php include 'navbar.php'; ?>
+   
     
     <div id="container-carrito">
         <h2>Carrito de Compras</h2>

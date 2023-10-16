@@ -7,18 +7,7 @@
     <link rel="stylesheet"  href="./estilos/productos.css">
 </head>
 <body>
-    <header>
-        <h1>Tienda de Informática</h1>
-        <nav>
-            <ul>
-                <li><a href="home.php">Home</a></li>
-                <li><a href="productos.php">Productos</a></li>
-                <li><a href="categorias.php">Categorías</a></li>
-                <li><a href="carrito.php">Carrito de Compras</a></li>
-                <li><a href="php/registro.php">Registro</a></li>
-            </ul>
-        </nav>
-    </header>
+<?php include 'navbar.php'; ?>
     <div class="container-items">
         <div class="item">
             <figure>

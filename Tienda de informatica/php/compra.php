@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
     <!-- Resto del contenido HTML -->
-    
+    <?php include '../php/navbar.php'; ?>
     <main>
         <h2>Carrito de Compras</h2>
         <table>
