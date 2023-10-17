@@ -1,6 +1,7 @@
 <?php
 require_once 'conexion.php';
 
+
 $categoria = isset($_GET['categoria']) ? $_GET['categoria'] : 'todos';
 $orden = isset($_GET['orden']) && ($_GET['orden'] === 'asc' || $_GET['orden'] === 'desc') ? $_GET['orden'] : '';
 
@@ -33,10 +34,26 @@ if ($num_rows > 0) {
         echo '<p>' . $fila['producto_nombre'] . '</p>';
         echo '<p>' . "Precio: " . $fila['producto_precio'] . '</p>';
         echo '<p>' . "Stock: " . $fila['producto_stock'] . '</p>';
-        echo '<button class="button-carrito">'. "Añadir al carrito" . '</button>';
+        
+        // Agregar al carrito
+        echo '<form method="POST" action="../Front/carrito.php">';
+        echo '<input type="hidden" name="producto_id" value="' . $fila['producto_id'] . '">';
+        echo '<input type="hidden" name="producto_nombre" value="' . $fila['producto_nombre'] . '">';
+        echo '<input type="hidden" name="producto_precio" value="' . $fila['producto_precio'] . '">';
+        echo '<input type="hidden" name="producto_stock" value="' . $fila['producto_stock'] . '">';
+        
+        // Agregamos campo type number de entrada para la cantidad
+        echo '<label for="cantidad">Cantidad:</label>';
+        echo '<input type="number" class="campo_cantidad" id="cantidad" name="cantidad" value="0" min="1" max="' . $fila['producto_stock'] . '">';
+        
+        echo '<button class="button-carrito" type="submit" name="agregar_carrito">Añadir al carrito</button>';
+        echo '</form>';
+        
         echo '</div>';
     }
-} else {
+}
+else {
     echo 'No se encontraron productos.';
 }
+
 ?>
