@@ -55,6 +55,7 @@
     include '../Controladores/controller-categorias.php';
     
     // Mostrar los productos
+    if (isset($productos) && is_array($productos)) {
     foreach ($productos as $producto) {
       echo '<div class="product">';
       echo '<img src="' . $producto->getFoto() . '" alt="' . $producto->getNombre() . '">';
@@ -62,11 +63,11 @@
       echo '<p>Precio: $' . $producto->getPrecio() . '</p>';
       echo '<button class="button-carrito" onclick="agregarAlCarrito(<?php echo $producto->getId(); ?>)">Agregar al carrito</button>';
       //echo '<button class="button-carrito" onclick="agregarAlCarrito(' . $producto->getId() . ')">Agregar al carrito</button>';
-
       echo '</div>';
-  }
+      }
+    }
+  
   ?>
-    ?>
   </div>
   <script>
     function actualizarOrden() {
