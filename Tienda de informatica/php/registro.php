@@ -41,7 +41,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-<?php include '../php/navbar.php'; ?>
 
     <main>
         <section class="formulario">

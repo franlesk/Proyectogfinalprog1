@@ -19,11 +19,11 @@
                 if (isset($_SESSION['usuario_id'])) {
                     // Si el usuario está iniciado sesión, muestra estos elementos del menú
                     echo '<li><a href="mostrar_perfil.php">Mi perfil</a></li>';
-                    echo '<li><button onclick="confirmarCierreSesion()">Cerrar Sesión</button></li>';
+                    echo '<button onclick="confirmarCierreSesion()">Cerrar Sesión</button></li>';
                 } else {
                     // Si el usuario no ha iniciado sesión, muestra estos elementos del menú
                     echo '<li><a href="../php/registro.php">Registro</a></li>';
-                    echo '<li><a href="../php/formulario_login.php">Inicia sesión</a></li>';
+                    echo '<li><a href="formulario_login.php">Inicia sesión</a></li>';
                 }
                 ?>
             </ul>
@@ -35,7 +35,7 @@
         let confirmar = confirm("¿Desea cerrar sesión?");
         console.log("Confirmar:", confirmar);
         if(confirmar){
-            window.location.href ="index.php";
+            window.location.href ="cerrar_sesion.php";
         }
     }
 
@@ -53,6 +53,7 @@
         }
     });
 </script>
+
 
 </body>
 </html>
