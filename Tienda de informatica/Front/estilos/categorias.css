@@ -6,8 +6,10 @@ body {
 }
 
 .filters {
-  margin-bottom: 20px;
-  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 5vh;
   text-align: center;
 }
   
@@ -100,4 +102,8 @@ body {
   background-color: #f4f4f4;
   color: #333;
   border: none;
+}
+
+.icon-cart{
+  width: 40px;
 }

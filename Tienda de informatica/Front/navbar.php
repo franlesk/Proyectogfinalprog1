@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda de Informática</title>
-    <!-- Agrega tus enlaces a archivos CSS y otros elementos del encabezado aquí -->
 </head>
 <body>
     <header>
