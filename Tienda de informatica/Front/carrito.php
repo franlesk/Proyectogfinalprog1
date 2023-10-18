@@ -85,6 +85,13 @@ $productosEnCarrito = $carrito->obtenerProductos();
             echo '<a href="../php/registro.php">Registrate aqui</a>';
         }
         ?>
+        <p style="color: green;"><?php 
+                if (isset($_SESSION['mensaje'])) {
+                    $mensaje = $_SESSION['mensaje'];
+                    unset($_SESSION['mensaje']);  // Limpiar el mensaje de la sesión
+                    echo $mensaje;
+                }
+        ?></p>
         
         
     

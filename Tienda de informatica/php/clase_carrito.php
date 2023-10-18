@@ -6,8 +6,7 @@ require_once "clase_categoria.php";
 session_start();
 
 class Carrito {
-    private $productos; // Un array para almacenar los productos en el carrito.
-
+    private $productos; // Array para almacenar los productos en el carrito.
     public function __construct() {
         $this->productos = isset($_SESSION['carrito']) ? $_SESSION['carrito'] : array();
     }
@@ -135,12 +134,12 @@ class Carrito {
                         }
                     }
     
-                    $mensaje = "Compra registrada correctamente.";
+                    $_SESSION['mensaje'] = "Compra registrada correctamente.";
                 } else {
-                    $mensaje = "Error al registrar la compra";
+                    $_SESSION['mensaje'] = "Error al registrar la compra";
                 }
             } else {
-                $mensaje = "No se pudo conectar a la base de datos.";
+                $_SESSION['mensaje'] = "No se pudo conectar a la base de datos.";
             }
         } catch (Exception $e) {
             echo "Error: " . $e->getMessage() . $idCompra;
@@ -148,7 +147,6 @@ class Carrito {
             // Cerrar la conexión
             $conexion = null;
         }
-        return $mensaje;
     }
 }
 ?>
