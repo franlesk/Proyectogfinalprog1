@@ -52,8 +52,26 @@
 
   <div id="product-container">
     <?php
+    session_start();
     include '../Controladores/controller-categorias.php';
     
+    // Procesar la solicitud para agregar productos al carrito
+if (isset($_POST['agregar_carrito'])) {
+  $productoIDs = $_POST['producto_id'];
+  $cantidades = $_POST['cantidad'];
+
+  // Agregar cada producto al carrito con su respectiva cantidad
+  for ($i = 0; $i < count($productoIDs); $i++) {
+      $productoID = $productoIDs[$i];
+      $cantidad = $cantidades[$i];
+
+      // Agregar producto al carrito
+      $carrito->agregarProductoAlCarrito($productoID, $cantidad);
+  }
+
+  // Guardar el carrito actualizado en la sesión
+  $_SESSION['carrito'] = serialize($carrito);
+}
     // Mostrar los productos
     if (isset($productos) && is_array($productos)) {
     foreach ($productos as $producto) {

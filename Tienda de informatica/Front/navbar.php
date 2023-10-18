@@ -15,7 +15,7 @@
                 <li><a href="categorias.php">Categorías</a></li>
                 <li><a href="carrito.php">Carrito de Compras</a></li>
                 <?php
-                session_start(); 
+                // session_start(); 
                 if (isset($_SESSION['usuario_id'])) {
                     // Si el usuario está iniciado sesión, muestra estos elementos del menú
                     echo '<li><a href="mostrar_perfil.php">Mi perfil</a></li>';

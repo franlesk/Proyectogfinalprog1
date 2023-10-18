@@ -1,21 +1,26 @@
 <?php
-// Incluye el archivo de clases
-require_once '../Controladores/conexion.php';
-require '../php/clase_categoria.php';
-require '../php/clase_producto.php';
-require '../php/clase_carrito.php';
+// Inicia la sesión
 
-//session_start();
-// Crear una instancia de Carrito
-$carrito = new Carrito();
+
+// Incluye el archivo de clases y la conexión
+require_once '../Controladores/conexion.php';
+require_once '../php/clase_categoria.php';
+require_once '../php/clase_producto.php';
+require_once '../php/clase_carrito.php';
+
+// Obtiene el carrito desde la sesión si existe, o crea uno nuevo
+$carrito = isset($_SESSION['carrito']) ? unserialize($_SESSION['carrito']) : new Carrito();
 
 // Procesar la solicitud para agregar productos al carrito
 if (isset($_POST['agregar_carrito'])) {
     $productoID = $_POST['producto_id'];
     $cantidad = $_POST['cantidad'];
 
-    // Agregar el producto al carrito desde la base de datos (si está disponible)
-    $carrito->agregarProductoAlCarritoDesdeSesion($productoID, $cantidad);
+    // Agregar producto al carrito
+    $carrito->agregarProductoAlCarrito($productoID, $cantidad);
+
+    // Guardar el carrito actualizado en la sesión
+    $_SESSION['carrito'] = serialize($carrito);
 }
 
 // Mostrar los productos en el carrito
@@ -28,8 +33,8 @@ $productosEnCarrito = $carrito->obtenerProductos();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras</title>
-   <link rel="stylesheet" href="..\Front\estilos\navbar.css">
-   <link rel="stylesheet" href="..\Front\estilos\carrito.css">
+   <link rel="stylesheet" href="../Front/estilos/navbar.css">
+   <link rel="stylesheet" href="../Front/estilos/carrito.css">
 </head>
 <body>
 <header>
@@ -41,25 +46,29 @@ $productosEnCarrito = $carrito->obtenerProductos();
     <table>
         <thead>
             <tr>
-                <th>Descripcion:</th>
-                <th>Producto:</th>
-                <th>Precio:</th>
-                <th>Cantidad:</th>
-                <th>Total:</th>
+                <th>Producto</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            // Dentro del bucle que muestra los productos en el carrito
-            foreach ($productosEnCarrito as $productoCarrito) {
+            // Verifica si hay productos en el carrito
+            if (!empty($productosEnCarrito)) {
+                foreach ($productosEnCarrito as $productoCarrito) {
                     echo '<tr>';
-                    echo '<td ><img class="foto_carrito" src="' . $productoCarrito['producto']->getProductoFoto() . '" alt="' .  '"></td>';
-                    echo '<td>' . $productoCarrito['producto']->getProductoNombre() . '</td>';
+                    echo '<td><img class="foto_carrito" src="' . $productoCarrito['producto']->getProductoFoto() . '" alt=""></td>';
                     echo '<td>$' . $productoCarrito['producto']->getProductoPrecio() . '</td>';
                     echo '<td>' . $productoCarrito['cantidad'] . '</td>';
                     echo '<td>$' . $productoCarrito['producto']->getProductoPrecio() * $productoCarrito['cantidad'] . '</td>';
+                    echo '<td><a href="eliminar_producto_carrito.php?id=' . $productoCarrito['producto']->getProductoID() . '">Eliminar</a></td>';
                     echo '</tr>';
                 }
+            } else {
+                echo '<tr><td colspan="5">El carrito está vacío.</td></tr>';
+            }
             ?>
         </tbody>
     </table>
@@ -71,9 +80,13 @@ $productosEnCarrito = $carrito->obtenerProductos();
         <a href="checkout.html">Finalizar Compra</a>
     
     </div>
-    
+</div>
+
 <footer>
     <p>&copy; 2023 Tienda de Informática</p>
 </footer>
 </body>
 </html>
+
+
+
