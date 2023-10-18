@@ -40,35 +40,6 @@ INSERT INTO `categoria` VALUES (1,'disco'),(2,'fuente'),(3,'gabinete'),(4,'mothe
 UNLOCK TABLES;
 
 --
--- Table structure for table `compra_productos`
---
-
-DROP TABLE IF EXISTS `compra_productos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `compra_productos` (
-  `id_compra_producto` int(11) NOT NULL AUTO_INCREMENT,
-  `id_compra` bigint(20) unsigned NOT NULL,
-  `producto_id` int(11) NOT NULL,
-  `cantidad_compra` int(11) NOT NULL,
-  PRIMARY KEY (`id_compra_producto`),
-  UNIQUE KEY `id_compra` (`id_compra`),
-  KEY `producto_id` (`producto_id`),
-  CONSTRAINT `compra_productos_ibfk_1` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id_compra`),
-  CONSTRAINT `compra_productos_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`producto_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `compra_productos`
---
-
-LOCK TABLES `compra_productos` WRITE;
-/*!40000 ALTER TABLE `compra_productos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `compra_productos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `compras`
 --
 
@@ -76,14 +47,14 @@ DROP TABLE IF EXISTS `compras`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `compras` (
-  `id_compra` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id_compra` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
   `fecha_hora` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `finalizar` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_compra`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +63,36 @@ CREATE TABLE `compras` (
 
 LOCK TABLES `compras` WRITE;
 /*!40000 ALTER TABLE `compras` DISABLE KEYS */;
+INSERT INTO `compras` VALUES (1,1,'2023-10-19 03:18:51',0),(2,1,'2023-10-19 03:20:54',0);
 /*!40000 ALTER TABLE `compras` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orden_producto`
+--
+
+DROP TABLE IF EXISTS `orden_producto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `orden_producto` (
+  `id_compra` int(11) NOT NULL,
+  `producto_id` int(11) NOT NULL,
+  `cantidad_compra` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_compra`,`producto_id`),
+  KEY `producto_id` (`producto_id`),
+  CONSTRAINT `orden_producto_ibfk_1` FOREIGN KEY (`id_compra`) REFERENCES `compras` (`id_compra`),
+  CONSTRAINT `orden_producto_ibfk_2` FOREIGN KEY (`producto_id`) REFERENCES `producto` (`producto_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orden_producto`
+--
+
+LOCK TABLES `orden_producto` WRITE;
+/*!40000 ALTER TABLE `orden_producto` DISABLE KEYS */;
+INSERT INTO `orden_producto` VALUES (1,8,2),(1,12,1),(1,32,1),(2,4,2),(2,8,1);
+/*!40000 ALTER TABLE `orden_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `usuario` (
   `usuario_clave` varchar(200) NOT NULL,
   `usuario_email` varchar(70) NOT NULL,
   PRIMARY KEY (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +150,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'franco','lescano','franlesk','$2y$10$SIuJ4/cyIQc2EO0.UAqBze/OrKUmRoW7DHwUn9ehktrMrDn6apXKG','franlesk@gmail.com');
+INSERT INTO `usuario` VALUES (1,'franco','lescano','franlesk','$2y$10$SIuJ4/cyIQc2EO0.UAqBze/OrKUmRoW7DHwUn9ehktrMrDn6apXKG','franlesk@gmail.com'),(2,'franco','lescano','michi deodo','$2y$10$.InEDnVwyvGJT4FUVDqY9eKdwf8VqAz8IGlLFfVKDZpKDVOHYY5u6','michideodo22@gmail.com');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,4 +167,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-13 20:12:44
+-- Dump completed on 2023-10-18 19:37:40
