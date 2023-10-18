@@ -80,7 +80,7 @@ $productosEnCarrito = $carrito->obtenerProductos();
         <?php
         
         if (isset($_SESSION['usuario_id'])) {
-            echo '<a href="checkout.html">Finalizar Compra</a>';
+            echo '<a href="../php/finalizar-compra.php">Finalizar Compra</a>';
         }else {
             echo '<a href="../php/registro.php">Registrate aqui</a>';
         }

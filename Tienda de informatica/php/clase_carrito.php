@@ -96,6 +96,59 @@ class Carrito {
             unset($this->productos[$productoID]);
         }
     }
-    }
     
+    public function finalizarCompra(){
+        try {
+            $conexion = conexion();
+    
+            if ($conexion) {
+                $idUsuario = $_SESSION['usuario_id'];
+                $fechaCompra = date('Y-m-d H:i:s');
+    
+                
+                $sqlCompra = "INSERT INTO compras (usuario_id, fecha_hora, finalizar) VALUES (:usuario_id, :fecha_hora, 0)";
+                $stmtCompra = $conexion->prepare($sqlCompra);
+                $stmtCompra->bindParam(':usuario_id', $idUsuario, PDO::PARAM_INT);
+                $stmtCompra->bindParam(':fecha_hora', $fechaCompra);
+    
+                if ($stmtCompra->execute()) {
+                    $idCompra = $conexion->lastInsertId();
+    
+                    
+                    $productosEnCarrito = $this->obtenerProductos();
+                    
+                   
+                    foreach ($productosEnCarrito as $productoData) {
+                        $producto = $productoData['producto'];
+                        $cantidad = $productoData['cantidad'];
+                        $productoID = $producto->getProductoID();
+    
+                        $sqlProductoCompra = "INSERT INTO orden_producto (id_compra, producto_id, cantidad_compra) 
+                                                VALUES (:id_compra, :producto_id, :cantidad)";
+                        $stmtProductoCompra = $conexion->prepare($sqlProductoCompra);
+                        $stmtProductoCompra->bindParam(':id_compra', $idCompra, PDO::PARAM_INT);
+                        $stmtProductoCompra->bindParam(':producto_id', $productoID, PDO::PARAM_INT);
+                        $stmtProductoCompra->bindParam(':cantidad', $cantidad, PDO::PARAM_INT);
+    
+                        if ($stmtProductoCompra->execute() !== TRUE) {
+                            echo "Error al insertar producto en tabla_compra_producto: ";
+                        }
+                    }
+    
+                    $mensaje = "Compra registrada correctamente.";
+                } else {
+                    $mensaje = "Error al registrar la compra";
+                }
+            } else {
+                $mensaje = "No se pudo conectar a la base de datos.";
+            }
+        } catch (Exception $e) {
+            echo "Error: " . $e->getMessage() . $idCompra;
+        } finally {
+            // Cerrar la conexión
+            $conexion = null;
+        }
+        return $mensaje;
+    }
+}
 ?>
