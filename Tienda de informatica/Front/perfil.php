@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if (isset($_SESSION['usuario_id'])) {
-    $usuarioID = $_SESSION["usuario_id"];
+    $usuarioID = $_SESSION['usuario_id'];
     $conexion = conexion(); // Establecer la conexión aquí
 
     // Crear un objeto Repositorio con la conexión

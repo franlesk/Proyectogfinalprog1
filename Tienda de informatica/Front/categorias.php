@@ -52,7 +52,7 @@
 
   <div id="product-container">
     <?php
-    session_start();
+    // session_start();
     include '../Controladores/controller-categorias.php';
     
     // Procesar la solicitud para agregar productos al carrito

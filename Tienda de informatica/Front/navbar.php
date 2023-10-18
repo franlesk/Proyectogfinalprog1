@@ -16,6 +16,9 @@
                 <li><a href="carrito.php">Carrito de Compras</a></li>
                 <?php
                 // session_start(); 
+                if (session_status() == PHP_SESSION_NONE) {
+                    session_start();
+                }
                 if (isset($_SESSION['usuario_id'])) {
                     // Si el usuario está iniciado sesión, muestra estos elementos del menú
                     echo '<li><a href="mostrar_perfil.php">Mi perfil</a></li>';
