@@ -32,7 +32,7 @@ if ($num_rows > 0) {
         echo '<div class="product">';
         echo '<img src="' . $fila['producto_foto'] . '" alt="' . $fila['producto_nombre'] . '">';
         echo '<p>' . $fila['producto_nombre'] . '</p>';
-        echo '<p>' . "Precio: " . $fila['producto_precio'] . '</p>';
+        echo '<p>' . "Precio: $" . $fila['producto_precio'] . '</p>';
         echo '<p>' . "Stock: " . $fila['producto_stock'] . '</p>';
         
         // Agregar al carrito
@@ -43,7 +43,7 @@ if ($num_rows > 0) {
         echo '<input type="hidden" name="producto_stock" value="' . $fila['producto_stock'] . '">';
         
         // Agregamos campo type number de entrada para la cantidad
-        echo '<label for="cantidad">Cantidad:</label>';
+        echo '<label for="cantidad">Cantidad: </label>';
         echo '<input type="number" class="campo_cantidad" id="cantidad" name="cantidad" value="0" min="1" max="' . $fila['producto_stock'] . '">';
         
         echo '<button class="button-carrito" type="submit" name="agregar_carrito">Añadir al carrito</button>';

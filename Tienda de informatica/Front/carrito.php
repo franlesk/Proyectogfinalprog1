@@ -77,7 +77,16 @@ $productosEnCarrito = $carrito->obtenerProductos();
         
         <p>Total: $<?php echo $carrito->calcularTotal(); ?></p>
         <a href="../php/vaciar_carrito.php" class="boton_vaciar_carrito">Vaciar Carrito</a>
-        <a href="checkout.html">Finalizar Compra</a>
+        <?php
+        
+        if (isset($_SESSION['usuario_id'])) {
+            echo '<a href="checkout.html">Finalizar Compra</a>';
+        }else {
+            echo '<a href="../php/registro.php">Registrate aqui</a>';
+        }
+        ?>
+        
+        
     
     </div>
 </div>
