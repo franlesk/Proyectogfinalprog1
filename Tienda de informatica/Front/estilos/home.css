@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: white;
+    background-color: #333;
     margin: 0;
     padding: 0;
 }
@@ -39,5 +39,12 @@ body {
 }
 
 .product:hover img {
-    transform: scale(1.2)
+    transform: scale(1.2)
+}
+
+h2 {
+    font-size: 50px;
+    text-align: center;
+    background-color: #fd611a;
+    color: white;
 }

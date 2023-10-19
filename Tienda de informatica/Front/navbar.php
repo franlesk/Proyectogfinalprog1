@@ -10,7 +10,7 @@
         <h1>Tienda de Informática</h1>
         <nav>
             <ul>
-                <li><a href="home.php">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="categorias.php">Productos</a></li>
                 <li><a href="carrito.php">Carrito de Compras</a></li>
                 <?php
