@@ -115,7 +115,10 @@ class Carrito {
     public function finalizarCompra() {
         try {
             $conexion = conexion();
-        
+            if (empty($this->productos)) {
+                $_SESSION['mensaje'] = "El carrito está vacío. No se puede realizar la compra.";
+                return;
+            }
             if ($conexion) {
                 $idUsuario = $_SESSION['usuario_id'];
                 $fechaCompra = date('Y-m-d H:i:s');

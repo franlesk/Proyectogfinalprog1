@@ -11,7 +11,6 @@
   <header>
 
     <?php 
-      $pagina_actual = 'Categorias';
       include 'navbar.php'; 
     ?>
   </header>
