@@ -85,14 +85,22 @@ $productosEnCarrito = $carrito->obtenerProductos();
             echo '<a href="../php/registro.php">Registrate aqui</a>';
         }
         ?>
-        <p style="color: green;"><?php 
+        <?php 
+                
                 if (isset($_SESSION['mensaje'])) {
                     $mensaje = $_SESSION['mensaje'];
-                    unset($_SESSION['mensaje']);  // Limpiar el mensaje de la sesión
-                    echo $mensaje;
+                    unset($_SESSION['mensaje']);
+                    $error = "Error";
+                    
+                    if (strpos($mensaje, $error) !== false) {
+                        echo '<p style="color: red;">' . $mensaje . '</p>';
+                        
+                    }else {
+                        echo '<p style="color: green;">' . $mensaje . '</p>';
+                    }
                 }
-        ?></p>
         
+        ?>
         
     
     </div>
