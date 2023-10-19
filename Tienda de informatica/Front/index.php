@@ -22,5 +22,6 @@
 <div id="product-container">
        <?php include '../Controladores/controller-home.php'; ?>
 </div>
+
 </body>
 </html>

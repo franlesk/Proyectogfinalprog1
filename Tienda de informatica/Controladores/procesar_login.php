@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Inicio de sesión exitoso
                     session_start();
                     $_SESSION['usuario_id'] = $resultado['usuario_id'];
-                    header("Location: ../Front/home.php"); // Redirigir a la página de inicio después de iniciar sesión
+                    header("Location: ../Front/index.php"); // Redirigir a la página de inicio después de iniciar sesión
                     exit(); // Salir para evitar que se siga ejecutando el código
                 } else {
                     // Error de inicio de sesión
