@@ -11,8 +11,7 @@
         <nav>
             <ul>
                 <li><a href="home.php">Home</a></li>
-                <li><a href="productos.php">Productos</a></li>
-                <li><a href="categorias.php">Categorías</a></li>
+                <li><a href="categorias.php">Productos</a></li>
                 <li><a href="carrito.php">Carrito de Compras</a></li>
                 <?php
                 // session_start(); 
