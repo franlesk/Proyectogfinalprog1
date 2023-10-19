@@ -20,6 +20,7 @@ if ($num_rows > 0) {
         echo '<p>' . $fila['producto_nombre'] . '</p>';
         echo '<p>' . "Precio: $" . $fila['producto_precio'] . '</p>';
         echo '<p>' . "Stock: " . $fila['producto_stock'] . '</p>';
+        echo '<form>'.'<button formaction="categorias.php">Ver Mas</button>'.'</form>';
         echo '</div>';
     }
 } else {

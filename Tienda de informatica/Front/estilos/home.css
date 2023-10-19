@@ -49,3 +49,16 @@ h2 {
     color: white;
     margin: 0px
 }
+
+button {
+    width: 40%;
+    height: 45px;
+    margin-left: 15px;
+    font-size: 15px;
+    color: white;
+    background-color: #fd611a;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    cursor: pointer;
+}
