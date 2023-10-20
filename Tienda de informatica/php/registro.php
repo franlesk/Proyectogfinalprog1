@@ -13,6 +13,74 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $clave2 = limpiar_cadena($_POST['usuario_clave_2']);
 
 
+    if($nombre=="" || $apellido=="" || $usuario=="" || $clave1=="" || $clave2==""){
+        echo '
+            <div class="mensaje-error">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                No has llenado todos los campos que son obligatorios
+            </div>
+        ';
+        exit();
+    }
+
+
+    /*== Verificando integridad de los datos ==*/
+    if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}",$nombre)){
+        echo '
+        <div class="mensaje-error">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El NOMBRE no coincide con el formato solicitado
+            </div>
+        ';
+        exit();
+    }
+
+    if(verificar_datos("[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}",$apellido)){
+        echo '
+            <div class="mensaje-error">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El APELLIDO no coincide con el formato solicitado
+            </div>
+        ';
+        exit();
+    }
+
+    if(verificar_datos("[a-zA-Z0-9]{4,20}",$usuario)){
+        echo '
+            <div class="mensaje-error">
+                <strong>¡Ocurrio un error inesperado!</strong><br>
+                El USUARIO no coincide con el formato solicitado
+            </div>
+        ';
+        exit();
+    }
+
+    /*== Verificando email ==*/
+    if($email!=""){
+        if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+            $check_email=conexion();
+            $check_email=$check_email->query("SELECT usuario_email FROM usuario WHERE usuario_email='$email'");
+            if($check_email->rowCount()>0){
+                echo '
+                    <div class="mensaje-error">
+                        <strong>¡Ocurrio un error inesperado!</strong><br>
+                        El correo electrónico ingresado ya se encuentra registrado, por favor elija otro
+                    </div>
+                ';
+                exit();
+            }
+            $check_email=null;
+        }else{
+            echo '
+            <div class="mensaje-error">
+                    <strong>¡Ocurrio un error inesperado!</strong><br>
+                    Ha ingresado un correo electrónico no valido
+                </div>
+            ';
+            exit();
+        } 
+    }
+
     if ($clave1 !== $clave2) {
         $mensaje_error = "Las contraseñas no coinciden";
     } else {
@@ -49,22 +117,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="post" action="registro.php">
                 
                 <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="usuario_nombre" placeholder="Ingrese su nombre" required>
+                <input type="text" id="nombre" name="usuario_nombre" placeholder="Ingrese su nombre" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" required>
 
                 <label for="apellido">Apellido:</label>
-                <input type="text" id="apellido" name="usuario_apellido" placeholder="Ingrese su apellido" required>
+                <input type="text" id="apellido" name="usuario_apellido" placeholder="Ingrese su apellido" pattern="[a-zA-ZáéíóúÁÉÍÓÚñÑ ]{3,40}" required>
 
                 <label for="usuario">Usuario:</label>
-                <input type="text" id="usuario" name="usuario_usuario" placeholder="Ingrese un usuario" required>
+                <input type="text" id="usuario" name="usuario_usuario" placeholder="Ingrese un usuario" pattern="[a-zA-Z0-9]{4,20}" required>
 
                 <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="usuario_email" placeholder="Ingrese su email" required>
 
                 <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="usuario_clave_1" placeholder="Ingrese una contraseña" required>
+                <input type="password" id="password" name="usuario_clave_1" placeholder="Ingrese una contraseña" pattern="[a-zA-Z0-9$@.-]{7,100}" required>
 
                 <label for="confirm_password">Repita su contraseña:</label>
-                <input type="password" id="confirm_password" name="usuario_clave_2" placeholder="Repita su contraseña" required>
+                <input type="password" id="confirm_password" name="usuario_clave_2" placeholder="Repita su contraseña" pattern="[a-zA-Z0-9$@.-]{7,100}" required>
 
                 <button type="submit">Registrarse</button>
 
