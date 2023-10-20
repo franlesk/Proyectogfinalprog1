@@ -1,6 +1,7 @@
 <?php
 require 'conexion.php';
 require '../php/usuario.php';
+require '../Controladores/verificar_datos.php';
 
 // Obtiene una instancia de PDO usando la función conexion()
 $conexion = conexion();
@@ -9,8 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Verificar envio de datos del formulario
     if (isset($_POST['usuario_usuario']) && isset($_POST['usuario_clave'])) {
         // Obtenemos el usuario y la contraseña del formulario
-        $usuario = $_POST['usuario_usuario'];
-        $hash_clave = $_POST['usuario_clave']; // Cambio de nombre a $hash_clave
+        $usuario = limpiar_cadena($_POST['usuario_usuario']);
+        $hash_clave = limpiar_cadena( $_POST['usuario_clave']); // Cambio de nombre a $hash_clave
 
         // Consulta para verificar los datos del usuario
         $sql = "SELECT usuario_id, usuario_clave FROM usuario WHERE usuario_usuario = ?";

@@ -2,16 +2,17 @@
 require_once '../Controladores/conexion.php';
 require_once 'usuario.php';
 require_once 'repositorio.php';
+require_once '../Controladores/verificar_datos.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = $_POST['usuario_nombre'];
-    $apellido = $_POST['usuario_apellido'];
-    $usuario = $_POST['usuario_usuario'];
-    $email = $_POST['usuario_email'];
-    $clave1 = $_POST['usuario_clave_1'];
-    $clave2 = $_POST['usuario_clave_2'];
+    $nombre = limpiar_cadena($_POST['usuario_nombre']);
+    $apellido = limpiar_cadena($_POST['usuario_apellido']);
+    $usuario = limpiar_cadena($_POST['usuario_usuario']);
+    $email = limpiar_cadena($_POST['usuario_email']);
+    $clave1 = limpiar_cadena($_POST['usuario_clave_1']);
+    $clave2 = limpiar_cadena($_POST['usuario_clave_2']);
 
-    // Verificar si las contraseñas coinciden
+
     if ($clave1 !== $clave2) {
         $mensaje_error = "Las contraseñas no coinciden";
     } else {
