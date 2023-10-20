@@ -54,7 +54,7 @@ CREATE TABLE `compras` (
   PRIMARY KEY (`id_compra`),
   KEY `usuario_id` (`usuario_id`),
   CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`usuario_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +63,6 @@ CREATE TABLE `compras` (
 
 LOCK TABLES `compras` WRITE;
 /*!40000 ALTER TABLE `compras` DISABLE KEYS */;
-INSERT INTO `compras` VALUES (1,1,'2023-10-19 03:18:51',0),(2,1,'2023-10-19 03:20:54',0);
 /*!40000 ALTER TABLE `compras` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -91,7 +90,6 @@ CREATE TABLE `orden_producto` (
 
 LOCK TABLES `orden_producto` WRITE;
 /*!40000 ALTER TABLE `orden_producto` DISABLE KEYS */;
-INSERT INTO `orden_producto` VALUES (1,8,2),(1,12,1),(1,32,1),(2,4,2),(2,8,1);
 /*!40000 ALTER TABLE `orden_producto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -167,4 +165,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-18 19:37:40
+-- Dump completed on 2023-10-19 21:48:23
