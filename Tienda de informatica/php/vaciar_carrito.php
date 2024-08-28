@@ -10,4 +10,3 @@ header("Location: ../Front/carrito.php");
 
 
 exit();
-?>

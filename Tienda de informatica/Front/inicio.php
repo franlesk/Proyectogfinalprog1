@@ -1,13 +1,16 @@
 <?php
 session_start();
 
-// Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario_id'])) {
-    // El usuario no ha iniciado sesión, redirigir al formulario de inicio de sesión
     header("Location: formulario_login.php");
     exit();
 }
 
-// El usuario ha iniciado sesión, mostrar el contenido protegido
-echo "¡Bienvenido! Contenido protegido aquí.";
-?>
+// Verificar si el usuario es administrador
+if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1) {
+    // Mostrar contenido para administradores
+    echo "¡Bienvenido, administrador! Contenido protegido para administradores aquí.";
+} else {
+    // Mostrar contenido para usuarios normales
+    echo "¡Bienvenido, usuario! Contenido protegido para usuarios aquí.";
+}
