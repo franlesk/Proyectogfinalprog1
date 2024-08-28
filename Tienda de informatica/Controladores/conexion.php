@@ -1,7 +1,8 @@
 <?php
 
 date_default_timezone_set('America/Argentina/Buenos_Aires');
-function conexion() {
+function conexion()
+{
     $host = "localhost";
     $nombre_bd = "inventario";
     $usuario = "root";
@@ -15,6 +16,3 @@ function conexion() {
         die("Error de conexión: " . $e->getMessage());
     }
 }
-
-?>
-
